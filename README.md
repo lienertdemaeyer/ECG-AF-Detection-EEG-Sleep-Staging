@@ -91,23 +91,27 @@ The performance of the classification was evaluated based on:
 The EEG signal was segmented into 30-second intervals.
 
 
-### Topographic maps
+### Topographic Maps of EEG Sources
 
-Topographic maps were used to visualize the EEG sources identified during Independent Component Analysis (ICA). The ICA decomposition allowed us to isolate components corresponding to distinct sources of brain activity, including those related to sleep-specific events like K-complexes and artifacts such as eye movements.
+Topographic maps were utilized to visually represent the EEG sources identified during Independent Component Analysis (ICA). These maps provide insights into the spatial distribution of electrical activity across the scalp, allowing us to localize brain regions involved in different stages of sleep or related to specific events such as **K-complexes**.
 
-> **Figure 4:** Topographic maps of EEG sources identified during segmentation.
+#### K-complex Source Identification
+
+Through the ICA decomposition, each independent component (IC) was analyzed by overlaying its corresponding topographic map with the EEG signal data and convolving it with a K-complex template. Our analysis identified the **7th ICA component** as the likely source of K-complexes. This was supported by the following observations:
+- The 7th component exhibited strong activation in the **frontal and central regions**, particularly across the FP1-M2, FP2-M1, F3-M2, F4-M2, and C3-M2 electrodes.
+- These regions are well-documented as being active during K-complexes, which are a hallmark of sleep stage 2 (S2).
+- **Matched filtering** confirmed this finding, as the 7th component yielded the highest count of detected K-complexes when convolved with the template signal.
+
+> **Figure 4:** Topographic maps of the EEG sources identified via ICA, with components corresponding to various brain and eye activity regions.
 
 ![EEG Segmentation](https://github.com/user-attachments/assets/713cf17d-199a-4ba7-a30a-b11776b52266)
 
-#### K-complex Identification
-Through visual inspection and matched filtering, we determined that the **7th ICA component** likely corresponds to K-complexes. This conclusion was based on:
-- The distribution of activity in the **frontal and central regions**, specifically across the electrodes FP1-M2, FP2-M1, F3-M2, F4-M2, and C3-M2.
-- These areas are known to be active during K-complexes, and matched filtering results supported this finding, as the highest count of detected K-complexes was linked to the 7th component.
+#### The Role of EOG Channels in ICA
 
-#### EOG Channels in ICA Decomposition
-The decision to include or exclude **EOG (Electrooculogram) channels** in the ICA algorithm is context-dependent. In this study, we observed that the **4th and 5th ICA components** showed significant activity corresponding to **eye movements** (EOG left and EOG right channels). These components:
-- Primarily capture eye movements, which may introduce noise into the decomposition.
-- By excluding EOG channels, the algorithm can focus more on brain activity signals, such as those associated with K-complexes, potentially improving the clarity and accuracy of K-complex detection.
+In EEG analysis, **EOG (Electrooculogram) channels** can sometimes be included in ICA to account for eye movement artifacts. However, in this study, it was determined that excluding EOG channels yielded cleaner brain activity components, particularly in relation to K-complex detection. The **4th and 5th ICA components** exhibited significant activity linked to eye movements, as indicated by their spatial distribution over the **EOG left and EOG right** electrodes. These channels primarily capture:
+- **Eye movement artifacts**, such as blinks or horizontal saccades, which can introduce noise into the decomposition process and obscure brain signals.
+  
+By excluding these EOG channels, the algorithm was able to focus more effectively on EEG signals related to brain activity, improving the detection clarity and accuracy of sleep-specific events like K-complexes.
 
 
 ---
