@@ -89,13 +89,4 @@ This project demonstrates the effectiveness of signal processing techniques comb
 
 ---
 
-## How to Run
 
-1. Clone the repository.
-2. Install the required dependencies from the `requirements.txt` file.
-3. Follow the instructions in the respective notebooks for ECG and EEG analysis.
-
-```bash
-git clone https://github.com/lienertdemaeyer/ECG-AF-Detection-EEG-Sleep-staging.git
-cd ECG-AF-Detection-EEG-Sleep-staging
-pip install -r requirements.txt
