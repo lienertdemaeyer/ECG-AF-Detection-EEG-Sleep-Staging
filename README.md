@@ -119,6 +119,21 @@ By excluding these EOG channels, the algorithm was able to focus more effectivel
 ### K-complex Detection
 K-complexes were detected using Independent Component Analysis (ICA) and template matching techniques.
 
+In this method, a pre-defined K-complex template is used to identify K-complexes in EEG segments by computing the **cross-correlation** between the template and the signal.
+
+- **Normalization**: Both the K-complex template and the EEG signal are normalized.
+- **Cross-correlation**: The cross-correlation function (CCF) is calculated between the template and the signal to find matching regions.
+- **Thresholding**: K-complexes are detected when the CCF exceeds a defined threshold, indicating a close match to the template.
+- **Result**: The number of detected K-complexes is recorded for each segment.
+
+### K-complex Detection Using Matched Filtering
+
+The matched filter method enhances signal detection by maximizing the **signal-to-noise ratio**, making it highly effective for detecting K-complexes in noisy EEG signals.
+
+- **Convolution**: The EEG signal is convolved with the K-complex template using a matched filter to emphasize similar signal patterns.
+- **Thresholding**: K-complexes are detected when the convolved signal exceeds a threshold, identifying strong matches to the template.
+- **Result**: The number of K-complexes detected per segment is recorded and compared to template matching results.
+
 > **Figure 5:** Template matching for K-complex detection using matched filters and cross-correlation.
 
 ![K-Complex Detection](https://github.com/user-attachments/assets/486d29e0-829c-4cf6-b466-83f159eb6892)
