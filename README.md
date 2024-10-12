@@ -88,11 +88,27 @@ The performance of the classification was evaluated based on:
 ## EEG-based Sleep Staging
 
 ### Segmentation
-The EEG signal was segmented into 30-second intervals for further analysis.
+The EEG signal was segmented into 30-second intervals.
+
+
+### Topographic maps
+
+Topographic maps were used to visualize the EEG sources identified during Independent Component Analysis (ICA). The ICA decomposition allowed us to isolate components corresponding to distinct sources of brain activity, including those related to sleep-specific events like K-complexes and artifacts such as eye movements.
 
 > **Figure 4:** Topographic maps of EEG sources identified during segmentation.
 
 ![EEG Segmentation](https://github.com/user-attachments/assets/713cf17d-199a-4ba7-a30a-b11776b52266)
+
+#### K-complex Identification
+Through visual inspection and matched filtering, we determined that the **7th ICA component** likely corresponds to K-complexes. This conclusion was based on:
+- The distribution of activity in the **frontal and central regions**, specifically across the electrodes FP1-M2, FP2-M1, F3-M2, F4-M2, and C3-M2.
+- These areas are known to be active during K-complexes, and matched filtering results supported this finding, as the highest count of detected K-complexes was linked to the 7th component.
+
+#### EOG Channels in ICA Decomposition
+The decision to include or exclude **EOG (Electrooculogram) channels** in the ICA algorithm is context-dependent. In this study, we observed that the **4th and 5th ICA components** showed significant activity corresponding to **eye movements** (EOG left and EOG right channels). These components:
+- Primarily capture eye movements, which may introduce noise into the decomposition.
+- By excluding EOG channels, the algorithm can focus more on brain activity signals, such as those associated with K-complexes, potentially improving the clarity and accuracy of K-complex detection.
+
 
 ---
 
